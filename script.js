@@ -12,6 +12,7 @@ const userInfoContainer = document.querySelector('.user-info-Container');
 let currentTab = userTab;
 const API_KEY = "5310a0a3ba3c9e90578cbeb274588afa";
 currentTab.classList.add("current-tab");
+getfromSessionStorage();
 
 function switchTab(clickedTab) {
     if(clickedTab != currentTab) {
@@ -136,12 +137,14 @@ async function fetchSearchWeatherInfo(city) {
     grantAccessContainer.classList.remove('active');
 
     try{
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);\
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
         const data = await response.json;
         loadingScreen.classList.remove('active');
+        userInfoContainer.classList.add('active');
+        renderWeatherInfo(data);
     }
     catch(err) {
         //HW
-    
+        loadingScreen.classList.remove('active');
     }
 }

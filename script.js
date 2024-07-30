@@ -70,8 +70,22 @@ async function fetchUserWeatherInfo(coordinates) {
 
         loadingScreen.classList.remove('active');
         userInfoContainer.classList.add('active');
+        renderWeatherInfo(data);
     }
     catch(err) {
+        loadingScreen.classList.remove('active');
         console.log(err);
     }
+}
+
+function renderWeatherInfo(weatherInfo) {
+    const cityName = document.querySelector('[data-cityName]');
+    const countryIcon = document.querySelector('[data-countryIcon]');
+    const desc = document.querySelector('[data-weatherDesc]');
+    const weatherIcon = document.querySelector('[data-weatherIcon]');
+    const temp = document.querySelector('[data-temp]');
+    const windSpeed = document.querySelector('[data-windSpeed]');
+    const humidity = document.querySelector('[data-humidity]');
+    const cloudiness = document.querySelector('[data-cloudiness]');
+    
 }

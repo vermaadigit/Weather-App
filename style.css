@@ -4,3 +4,8 @@
     border-radius: 4px;
 }
 
+.form-container.active {
+    scale: 1;
+    opacity: 1;
+    display: flex;
+}

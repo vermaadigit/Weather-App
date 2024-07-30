@@ -18,6 +18,18 @@ function switchTab(clickedTab) {
         currentTab.classList.remove('current-tab');
         currentTab = clickedTab;
         currentTab.classList.add('current-tab');
+
+        if(!searchForm.classList.contains('active')) {
+            userInfoContainer.classList.remove('active');
+            grantAccessContainer.classList.remove('active');
+            searchForm.classList.add('active');
+        }
+        else
+        {
+            searchForm.classList.remove('active');
+            userInfoContainer.classList.remove('active');
+            getfromSessionStorage();
+        }
     }
 }
 
@@ -28,3 +40,38 @@ userTab.addEventListener('click', () => {
 searchTab.addEventListener('click', () => {
     switchTab(searchTab);
 });
+
+
+//Coordinates Checker
+function getfromSessionStorage() {
+    const localCoordinates = sessionStorage.getItem('user-coordinates');
+    if(!localCoordinates) {
+        grantAccessContainer.classList.add('active');
+    }
+    else {
+        const coordinates = JSON.parse(localCoordinates);
+        fetchUserWeatherInfo(coordinates);
+    }
+}
+
+async function fetchUserWeatherInfo(coordinates) {
+    const {lat, long} = coordinates;
+
+    //Make Grant Container Invisible
+    grantAccessContainer.classList.remove('active');
+
+    //Make Loader Visible
+    loadingScreen.classList.add('active');
+
+    //API Call
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`);\
+        const data = await response.json();
+
+        loadingScreen.classList.remove('active');
+        userInfoContainer.classList.add('active');
+    }
+    catch(err) {
+        console.log(err);
+    }
+}

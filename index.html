@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
-    <title>Weather App | Open API</title>
 </head>
 <body>
     
@@ -20,78 +24,71 @@
 
         <div class="weather-container">
 
-            <!-- Grant Location Access to get your weather -->
-             <div class="grantlocation-container">
-                <img src="./assets/location.png" alt="Location PNG" height="80" width="80" loading="lazy">
+            <!-- grant location container-->
+            <div class="sub-container grant-location-container">
+                <img src="./assets/location.png" width="80" height="80" loading="lazy">
                 <p>Grant Location Access</p>
                 <p>Allow Access to get weather Information</p>
                 <button class="btn" data-grantAccess>Grant Access</button>
-             </div>
+            </div>
 
-             <!-- Search Weather Form  -->
-              <form action="" class="form-container" data-searchForm>
-                <input type="text" placeholder="Search for City...." data-searchInput>
-                <button class="btn">
-                    <img src="./assets/search.png" alt="" width="20" height="20" loading="lazy">
+            <!-- search form -> form-container-->
+            <form class="form-container" data-searchForm>
+                <input placeholder="Search for City..." data-searchInput>
+                <button class="btn" type="submit">
+                    <img src="./assets/search.png"  width="20" height="20" loading="lazy">
                 </button>
-              </form>
+            </form>
 
-              <!-- Loading....  -->
-
-              <div class="loading-container">
-                <img src="./assets/loading.gif" alt="" width="150" height="150">
+            <!--- loading screen container -->
+            <div class="sub-container loading-container">
+                <img src="./assets/loading.gif" width="150" height="150">
                 <p>Loading</p>
-              </div>
+            </div>
 
-              <!-- show Weather Info  -->
-               <div class="user-info-Container">
+            <!-- show weather info -->
+            <div class="sub-container user-info-container">
 
-                <!-- City Name and Flag -->
-                    <div class="name">
-                        <p data-cityName></p>
-                        <img data-countryIcon>
+                <!--city name and Flag-->
+                <div class="name">
+                    <p data-cityName></p>
+                    <img data-countryIcon>
+                </div>
+
+                <!-- weather descriptuion-->
+                <p data-weatherDesc></p>
+                <!--weather Icon-->
+                <img data-weatherIcon>
+                <!--temperature-->
+                <p data-temp></p>
+
+                <!--3 cards - parameters-->
+                <div class="parameter-container">
+
+                    <!--card 1-->
+                    <div class="parameter">
+                        <img src="./assets/wind.png" >
+                        <p>windspeed</p>
+                        <p data-windspeed></p>
                     </div>
 
-                    <!-- Weather Description -->
-                    <P data-weatherDesc></P>
-
-                    <!-- Weather Icon  -->
-                    <img data-weatherIcon>
-
-                    <!-- Temperature  -->
-                    <p data-temp></p>
-
-                    <!-- Three Card Parameter  -->
-                    <div class="Parameter-container">
-                        <!-- card 1 -->
-                        <div class="Parameter">
-                            <img src="./assets/wind.png" alt="Wind Img">
-                            <p>WINDSPEED</p>
-                            <p data-windSpeed></p>
-                        </div>
-
-                        <!-- card 2 -->
-                        <div class="Parameter">
-                            <img src="./assets/humidity.png" alt="humidity Img">
-                            <p>HUMIDITY</p>
-                            <p data-humidity></p>
-                        </div>
-
-                        <!-- card 3 -->
-                        <div class="Parameter">
-                            <img src="/assets/cloud.png" alt="Could Img">
-                            <p>CLOUDS</p>
-                            <p data-cloudiness></p>
-                        </div>
+                    <!--card 2-->
+                    <div class="parameter">
+                        <img src="./assets/humidity.png" >
+                        <p>humidity</p>
+                        <p data-humidity></p>
                     </div>
 
-               </div>
-
+                    <!--card 3-->
+                    <div class="parameter">
+                        <img src="./assets/cloud.png" >
+                        <p>Clouds</p>
+                        <p data-cloudiness></p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
     </div>
-
 
     <script src="script.js"></script>
 </body>

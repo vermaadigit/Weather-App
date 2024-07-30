@@ -98,3 +98,28 @@ function renderWeatherInfo(weatherInfo) {
     humidity.innerText = `${weatherInfo.main.humidity}%`;
     cloudiness.innerText = `${weatherInfo.clouds.all}%`;
 }
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else {
+        //HW - Show an Alert for no geplocation support available
+    }
+}
+
+function showPosition(position) {
+    const userCordinates = {
+        lat: position.coords.latitude,
+        long: position.coords.longitude
+    }
+
+    sessionStorage.setItem('user-coordinates', JSON.stringify(userCordinates));
+
+    fetchUserWeatherInfo(userCordinates);
+}
+
+const grantAccessButton = document.querySelector('[data-grantAccess]');
+grantAccessButton.addEventListener('click', () => {
+
+});

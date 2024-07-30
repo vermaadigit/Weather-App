@@ -11,7 +11,7 @@ const userInfoContainer = document.querySelector('.user-info-Container');
 
 let currentTab = userTab;
 const API_KEY = "5310a0a3ba3c9e90578cbeb274588afa";
-currentTab.classList.add("current-tab"); 
+currentTab.classList.add("current-tab");
 
 function switchTab(clickedTab) {
     if(clickedTab != currentTab) {
@@ -65,7 +65,7 @@ async function fetchUserWeatherInfo(coordinates) {
 
     //API Call
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`);\
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`);
         const data = await response.json();
 
         loadingScreen.classList.remove('active');
@@ -87,5 +87,14 @@ function renderWeatherInfo(weatherInfo) {
     const windSpeed = document.querySelector('[data-windSpeed]');
     const humidity = document.querySelector('[data-humidity]');
     const cloudiness = document.querySelector('[data-cloudiness]');
-    
+
+    //Fetch Values from weather Info objects and put in UI elements
+    cityName.innerText = weatherInfo.name;
+    countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo.sys.country.toLowerCase()}.png`;
+    desc.innerText = weatherInfo.weather.description;
+    weatherIcon.src = `http://openweathermap.org/img/wn/${weatherInfo.weather.icon}.png`;
+    temp.innerText = `${weatherInfo.main.temp}°C`;   
+    windSpeed.innerText = `${weatherInfo.wind.speed} m/s`;
+    humidity.innerText = `${weatherInfo.main.humidity}%`;
+    cloudiness.innerText = `${weatherInfo.clouds.all}%`;
 }
